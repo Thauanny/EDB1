@@ -4,12 +4,12 @@
 using namespace std;
 
 
-bool busca_sequencial_crescente(int * lista, int tam, int x){
+bool busca_sequencial_crescente_recursiva(int * lista, int tam, int x){
     
     if(tam <= 0) return false;
     if (*lista == x) return true;
 
-    return busca_sequencial_crescente(lista+1, tam-1, x); 
+    return busca_sequencial_crescente_recursiva(lista+1, tam-1, x); 
 
     /*
     * lista+1 vai para o proximo endereço na memoria, 
@@ -21,11 +21,11 @@ bool busca_sequencial_crescente(int * lista, int tam, int x){
 
 
 
-bool busca_sequencial_decrescente(int * lista, int tam, int x){
+bool busca_sequencial_decrescente_recursiva(int * lista, int tam, int x){
     
     if(tam == 0) return false;
     if (lista[tam-1] == x) return true;
-    return busca_sequencial_decrescente(lista, tam-1, x); 
+    return busca_sequencial_decrescente_recursiva(lista, tam-1, x); 
 
     /*
     * Quando entra pega o tamanho maximo do vetor se for tamanho 7, 
@@ -33,6 +33,33 @@ bool busca_sequencial_decrescente(int * lista, int tam, int x){
     * Na recursiva vai para o tam-1 (6), mas como foi mostrado antes, 
     * vai para lista[tam-1] que é o [5].
     */
+}
+
+
+
+bool busca_sequencial_decrescente(int * lista, int tam, int x){
+    
+    for (size_t ii = tam-1; i <= 0; i--)
+    {
+       if (lista[ii] == x){
+           return true;
+       }
+       
+    }
+    return false;
+}
+
+
+bool busca_sequencial_crescente(int * lista, int tam, int x){
+    
+    for (size_t ii = 0; i < tam; i++)
+    {
+       if (lista[ii] == x){
+           return true;
+       }
+       
+    }
+    return false;
 }
 
 void mostrar_vetor(int * lista, int tam){//mostrar vetor
@@ -55,14 +82,15 @@ void num_aleatorios(int * lista, int  tam){
 
 }
 
+
 int main(){
     int tam = 7;
     int lista[tam];
 
     num_aleatorios(lista, tam);
     mostrar_vetor(lista, tam); 
-    cout << "Busca Sequencial crescente procura o 478: " << busca_sequencial_crescente(lista, 7, 478) << endl;
-    cout << "Busca Sequencial decrescente procura o 0: " << busca_sequencial_decrescente(lista, 7, 1) << endl;
+    cout << "Busca Sequencial crescente procura o 478: " << busca_sequencial_crescente_recursiva(lista, 7, 478) << endl;
+    cout << "Busca Sequencial decrescente procura o 0: " << busca_sequencial_decrescente_recursiva(lista, 7, 1) << endl;
 
     return 0;
 }
